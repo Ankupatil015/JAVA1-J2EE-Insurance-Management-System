@@ -4,7 +4,7 @@
   <groupId>in.co.insurance.mgt</groupId>
   <artifactId>Insurance-Management</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Insurance-Management Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
