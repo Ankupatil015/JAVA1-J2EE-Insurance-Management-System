@@ -35,6 +35,7 @@ public class LoginCtl extends BaseCtl {
 
 	private static final long serialVersionUID = 1L;
 	
+	
 	public static final String OP_REGISTER = "Register";
 	public static final String OP_SIGN_IN = "SignIn";
 	public static final String OP_SIGN_UP = "SignUp";
@@ -194,7 +195,7 @@ public class LoginCtl extends BaseCtl {
 			UserBean bean = (UserBean) populateBean(request);
 			try {
 				bean = model.authenticate(bean.getLogin(), bean.getPassword());
-				
+			//	bean=model.authenticate(bean);
 				if (bean != null) {
 					session.setAttribute("user", bean);
 					session.setMaxInactiveInterval(10 * 6000);

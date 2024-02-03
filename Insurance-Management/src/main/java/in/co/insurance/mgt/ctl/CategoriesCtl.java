@@ -19,14 +19,13 @@ import in.co.insurance.mgt.util.DataUtility;
 import in.co.insurance.mgt.util.PropertyReader;
 import in.co.insurance.mgt.util.ServletUtility;
 
-
 /**
  * Servlet implementation class CategoriesCtl
  */
 @WebServlet(name = "CategoriesCtl", urlPatterns = { "/categories" })
 public class CategoriesCtl extends BaseCtl {
 	private static final long serialVersionUID = 1L;
-       
+
 	private static Logger log = Logger.getLogger(CategoriesCtl.class);
 
 	/**
@@ -45,13 +44,15 @@ public class CategoriesCtl extends BaseCtl {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		log.debug("CategoriesCtl doGet method start");
 		List list = null;
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-		int pageSize =10;
+		int pageSize = 10;
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 		CategoryModel model = new CategoryModel();
@@ -76,9 +77,11 @@ public class CategoriesCtl extends BaseCtl {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		log.debug("CategoriesCtl doPost method start");
 		List list = null;
 
@@ -105,7 +108,7 @@ public class CategoriesCtl extends BaseCtl {
 				pageNo--;
 			}
 		}
-		
+
 		try {
 
 			list = model.search(bean, pageNo, pageSize);
@@ -125,6 +128,7 @@ public class CategoriesCtl extends BaseCtl {
 
 		log.debug("CategoriesCtl doPost method end");
 	}
+
 	@Override
 	protected String getView() {
 		return IMSView.CATEGORIES_VIEW;

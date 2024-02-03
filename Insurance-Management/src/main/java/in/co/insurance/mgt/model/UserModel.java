@@ -705,4 +705,9 @@ public class UserModel {
 
 		return flag;
 	}
+
+	public UserBean authenticate(UserBean bean) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

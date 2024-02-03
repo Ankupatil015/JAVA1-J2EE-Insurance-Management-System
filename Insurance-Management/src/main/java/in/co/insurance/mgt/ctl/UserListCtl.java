@@ -19,7 +19,6 @@ import in.co.insurance.mgt.util.DataUtility;
 import in.co.insurance.mgt.util.PropertyReader;
 import in.co.insurance.mgt.util.ServletUtility;
 
-
 /**
  * Servlet implementation class UserListCtl
  */
@@ -30,6 +29,7 @@ import in.co.insurance.mgt.util.ServletUtility;
 @WebServlet(name = "UserListCtl", urlPatterns = { "/ctl/userList" })
 public class UserListCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(UserListCtl.class);
+
 	/**
 	 * Populates bean object from request parameters
 	 * 
@@ -61,7 +61,7 @@ public class UserListCtl extends BaseCtl {
 		List list = null;
 
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-		int pageSize =10;
+		int pageSize = 10;
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
@@ -77,7 +77,6 @@ public class UserListCtl extends BaseCtl {
 
 			list = model.search(bean, pageNo, pageSize);
 
-		
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found ", request);
 			}
@@ -106,24 +105,23 @@ public class UserListCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		log.debug("UserListCtl doPost Start");
-		
-		
+
 		List list = null;
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
-		
+
 		UserBean bean = (UserBean) populateBean(request);
-		
+
 		String op = DataUtility.getString(request.getParameter("operation"));
 		// get the selected checkbox ids array for delete list
-		
+
 		String[] ids = request.getParameterValues("ids");
-		
+
 		UserModel model = new UserModel();
 		try {
 
@@ -137,7 +135,7 @@ public class UserListCtl extends BaseCtl {
 					pageNo--;
 				}
 
-			}else if (OP_RESET.equalsIgnoreCase(op)) {
+			} else if (OP_RESET.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(IMSView.USER_LIST_CTL, request, response);
 				return;
 			}
@@ -157,6 +155,7 @@ public class UserListCtl extends BaseCtl {
 		}
 		log.debug("UserListCtl doGet End");
 	}
+
 	/**
 	 * Returns the VIEW page of this Controller
 	 * 
